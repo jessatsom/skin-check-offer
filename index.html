@@ -549,6 +549,30 @@
     .price-figure { font-size: 72px; }
   }
 </style>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1CFNYT1F51"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1CFNYT1F51', {
+    'cookie_domain': 'som-aesthetics.com',
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+
+  // Track Book Now button clicks as a GA4 event
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href*="dermoffer-mar26"]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        gtag('event', 'book_now_click', {
+          'event_category': 'engagement',
+          'event_label': btn.innerText.trim(),
+          'page_location': window.location.href
+        });
+      });
+    });
+  });
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
