@@ -475,6 +475,34 @@
     min-height: 44px; display: inline-flex; align-items: center;
   }
 
+  /* ── ACCESSIBILITY BAR ── */
+  .accessibility-bar {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 14px 40px;
+  }
+  .accessibility-inner {
+    max-width: 1080px; margin: 0 auto;
+    font-size: 13px; font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+  }
+  .accessibility-inner strong {
+    color: rgba(255,255,255,0.88);
+    font-weight: 600;
+  }
+  .accessibility-inner a {
+    color: #7ecfd5;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  .accessibility-inner a:hover {
+    color: var(--white);
+  }
+  @media (max-width: 860px) {
+    .accessibility-bar { padding: 14px 20px; }
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
@@ -745,6 +773,11 @@
 </main>
 
 <!-- FOOTER -->
+<div class="accessibility-bar" role="contentinfo" aria-label="Accessibility information">
+  <div class="accessibility-inner">
+    <strong>Accessibility:</strong> If you are vision-impaired or have some other impairment covered by the Americans with Disabilities Act or a similar law, and you wish to discuss potential accommodations related to using this website, please contact our Accessibility Manager at <a href="tel:7607667546">760-766-7546</a> &nbsp;|&nbsp; <a href="https://www.som.md/sitemap.xml" target="_blank" rel="noopener noreferrer">Sitemap</a>
+  </div>
+</div>
 <footer role="contentinfo">
   <div class="footer-logo">
     <a href="https://www.som.md" target="_blank" rel="noopener noreferrer" aria-label="SOM Aesthetics — visit main website (opens in new tab)">
