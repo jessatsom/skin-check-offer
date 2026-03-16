@@ -564,8 +564,8 @@
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href*="dermoffer-mar26"]').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        gtag('event', 'book_now_click', {
-          'event_category': 'engagement',
+        gtag('event', 'skincheck_book_now_click', {
+          'event_category': 'skincheck_landing',
           'event_label': btn.innerText.trim(),
           'page_location': window.location.href
         });
