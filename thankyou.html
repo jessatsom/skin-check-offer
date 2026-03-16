@@ -179,6 +179,23 @@
     footer { flex-direction: column; text-align: center; padding: 24px 20px; }
   }
 </style>
+<!-- Google Analytics GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1CFNYT1F51"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-1CFNYT1F51', {
+    'cookie_domain': 'som-aesthetics.com',
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+  // Fire conversion event on thank you page load
+  gtag('event', 'form_submission', {
+    'event_category': 'conversion',
+    'event_label': '$99 Skin Check Lead',
+    'value': 99
+  });
+</script>
 </head>
 <body>
 
