@@ -160,13 +160,115 @@
   }
   .btn-hero:hover { background: var(--dark-teal); transform: translateY(-1px); }
 
+  /* hero trust bullets */
+  .hero-bullets {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 24px;
+  }
+  .hero-bullets li {
+    font-size: 15px; font-weight: 400;
+    color: rgba(255,255,255,0.92);
+    display: flex; align-items: center; gap: 10px; line-height: 1.5;
+  }
+  .hero-bullets li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal); flex-shrink: 0;
+  }
+
   .hero-caption {
     margin-top: 18px; font-size: 13px; font-weight: 500;
     letter-spacing: 0.08em; text-transform: uppercase;
     color: rgba(255,255,255,0.65); /* 5.2:1 — AA */
   }
 
+  /* ── HERO — two column: left copy, right form ── */
+  .hero {
+    background: var(--dark-teal);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(69,162,170,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 72px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    position: relative; z-index: 1;
+  }
+  .hero-inner .form-card {
+    border-top: 4px solid var(--lilac);
+  }
+  .hero-inner .form-card .form-title {
+    text-align: left;
+  }
+  .hero-inner .form-card .form-note {
+    text-align: left !important;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: 0;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 28px;
+  }
+  .hero-tag span { width: 28px; height: 1px; background: var(--teal); display: block; }
+  .hero h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(38px, 4vw, 58px);
+    line-height: 1.1; color: var(--white); margin-bottom: 16px;
+  }
+  .hero h1 em { font-style: italic; color: #7ecfd5; }
+  .hero-price {
+    display: inline-flex; align-items: flex-end; gap: 6px;
+    margin: 20px 0 32px;
+  }
+  .price-sign {
+    font-family: Georgia, serif; font-size: 32px;
+    color: #d4c4e8; padding-bottom: 14px; line-height: 1;
+  }
+  .price-figure {
+    font-family: Georgia, serif; font-size: 100px;
+    line-height: 1; color: #7ecfd5;
+  }
+  .price-desc {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.75);
+    padding-bottom: 14px; line-height: 1.8; text-align: left;
+  }
+  .hero-sub {
+    font-size: 17px; font-weight: 300; color: rgba(255,255,255,0.88);
+    max-width: 480px; margin-bottom: 40px; line-height: 1.85;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .hero-caption {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: auto; padding-top: 16px;
+  }
+  .btn-hero {
+    display: inline-flex; align-items: center;
+    background: var(--teal-deep); color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 15px 32px; min-height: 48px;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-hero:hover { background: #1e5f6a; }
+
   /* ── TRUST CARDS (replaces bullet strip) ── */
+
   .trust-section {
     background: var(--soft-purple);
     padding: 56px 40px;
@@ -525,7 +627,26 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     nav { padding: 14px 20px; }
-    .hero { padding: 60px 24px 72px; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding: 56px 24px 48px;
+      gap: 32px;
+    }
+    .hero-left {
+      text-align: left;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 8vw, 44px);
+    }
+    .hero-price {
+      justify-content: flex-start;
+    }
+    .hero-sub {
+      text-align: left;
+    }
+    .hero-inner .form-card {
+      margin: 0;
+    }
     .section { padding: 60px 24px; }
     .trust-section { padding: 40px 20px; }
     .trust-grid { grid-template-columns: repeat(2, 1fr); }
@@ -560,6 +681,23 @@
     'cookie_flags': 'SameSite=None;Secure'
   });
 
+  // Track page view
+  gtag('event', 'skincheck_page_view', {
+    'event_category': 'skincheck_landing',
+    'event_label': '$99 Skin Check - Encinitas'
+  });
+
+  // Track form submissions via ProspyrMed postMessage
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'prospyrmed_form_submit') {
+      gtag('event', 'skincheck_form_submission', {
+        'event_category': 'skincheck_landing',
+        'event_label': '$99 Skin Check Lead - Encinitas',
+        'value': 99
+      });
+    }
+  });
+
   // Track Book Now button clicks as a GA4 event
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href*="dermoffer-mar26"]').forEach(function(btn) {
@@ -589,20 +727,43 @@
 </nav>
 
 <!-- HERO -->
-<main id="main-content">
+<main id="main-content" role="main">
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-tag" aria-hidden="true"><span></span>Concierge Dermatology &bull; Encinitas, CA</div>
-  <h1 id="hero-heading">Skip the year-long wait.<br><em>Expert skin care, this week.</em></h1>
-  <div class="hero-price" role="text" aria-label="$99 comprehensive skin check flat fee">
-    <div class="price-sign" aria-hidden="true">$</div>
-    <div class="price-figure" aria-hidden="true">99</div>
-    <div class="price-desc" aria-hidden="true">Comprehensive<br>skin check<br>flat fee</div>
+  <div class="hero-inner">
+    <!-- LEFT: headline copy -->
+    <div class="hero-left">
+      <div class="hero-tag" aria-hidden="true"><span></span>Concierge Dermatology &bull; Encinitas, CA</div>
+      <h1 id="hero-heading">Skip the year-long wait.<br><em>Expert skin care, this week.</em></h1>
+      <div class="hero-price" role="text" aria-label="$99 comprehensive skin check flat fee">
+        <div class="price-sign" aria-hidden="true">$</div>
+        <div class="price-figure" aria-hidden="true">99</div>
+        <div class="price-desc" aria-hidden="true">Comprehensive<br>skin check<br>flat fee</div>
+      </div>
+      <p class="hero-sub">
+        <strong>Same-week dermatology appointments.</strong> Personalized care with immediate availability, extended consultations, and direct provider access — all for a simple flat fee.
+      </p>
+      <p class="hero-caption">Cash pay only &nbsp;&middot;&nbsp; No insurance &nbsp;&middot;&nbsp; Encinitas, CA</p>
+    </div>
+    <!-- RIGHT: form card — identical to bottom form card -->
+    <div class="form-card" id="book-hero">
+      <div class="form-title">Book your $99<br>skin check</div>
+      <p class="form-note" style="margin-bottom:20px;text-align:left;font-size:14px;color:var(--grey-mid);">Fill out the form below and our team will be in touch shortly to assist you.</p>
+      <iframe
+        src="https://app.prospyrmed.com/leadform/9779e861-e621-467c-9d43-2e130e91dbac"
+        width="100%"
+        height="600"
+        frameborder="0"
+        style="border:none;display:block;min-height:600px;width:100%;overflow:visible;"
+        title="Book your $99 skin check appointment"
+        loading="lazy"
+        scrolling="no">
+      </iframe>
+      <p style="margin-top:16px;font-size:12px;color:var(--grey-mid);text-align:center;">
+        Prefer to call? <a href="tel:7607667546" style="color:var(--teal-deep);text-decoration:underline;">760-766-7546</a><br>
+        Cash pay only &middot; No insurance &middot; Encinitas, CA
+      </p>
+    </div>
   </div>
-  <p class="hero-sub">
-    <strong>Same-week dermatology appointments.</strong> Personalized care with immediate availability, extended consultations, and direct provider access — all for a simple flat fee.
-  </p>
-  <a href="https://link.som.md/dermoffer-mar26" class="btn-hero">Book My $99 Skin Check</a>
-  <p class="hero-caption">Cash pay only &nbsp;&middot;&nbsp; No insurance &nbsp;&middot;&nbsp; Encinitas, CA</p>
 </section>
 
 <!-- TRUST CARDS -->
