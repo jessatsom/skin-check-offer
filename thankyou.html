@@ -9,177 +9,127 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Google Analytics GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CFNYT1F51"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-1CFNYT1F51', {
-    'cookie_domain': 'som-aesthetics.com',
-    'cookie_flags': 'SameSite=None;Secure'
-  });
-  gtag('event', 'skincheck_form_submission', {
-    'event_category': 'skincheck_landing',
-    'event_label': '$99 Skin Check Lead - Encinitas',
-    'value': 99
-  });
+  gtag('config', 'G-1CFNYT1F51', {'cookie_domain':'som-aesthetics.com','cookie_flags':'SameSite=None;Secure'});
+  gtag('event', 'skincheck_form_submission', {'event_category':'skincheck_landing','event_label':'$99 Skin Check Lead - Encinitas','value':99});
 </script>
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --dark-teal:   #0f4a5d;
     --teal:        #45a2aa;
     --teal-deep:   #2c7d86;
-    --lilac:       #bfaed5;
-    --lilac-soft:  #d5cfe6;
     --soft-purple: #f3f0f8;
-    --charcoal:    #2f3841;
     --grey-mid:    #4a5060;
     --white:       #ffffff;
   }
-
   html, body {
     height: 100%;
     font-family: 'Montserrat', sans-serif;
     background: var(--white);
-    color: var(--charcoal);
     -webkit-font-smoothing: antialiased;
   }
+  h1 { font-family: Georgia, serif; font-weight: normal; }
 
-  h1, h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-weight: normal;
-  }
-
-  /* compact container — fits within 600px iframe */
-  .container {
+  .wrap {
     min-height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 32px;
-    text-align: center;
-    background: var(--white);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 32px 24px;
     border-top: 4px solid var(--teal);
+    gap: 16px;
   }
 
-  .checkmark {
-    width: 60px; height: 60px;
+  .check {
+    width: 56px; height: 56px; border-radius: 50%;
     background: var(--soft-purple);
-    border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
     flex-shrink: 0;
   }
-  .checkmark svg {
-    width: 28px; height: 28px;
+  .check svg {
+    width: 26px; height: 26px;
     stroke: var(--teal-deep); fill: none;
     stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
   }
 
   .eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--teal-deep);
-    margin-bottom: 10px;
   }
 
   h1 {
-    font-family: Georgia, serif;
-    font-size: 28px; line-height: 1.2;
-    color: var(--dark-teal); margin-bottom: 14px;
+    font-size: clamp(22px, 5vw, 26px);
+    line-height: 1.2; color: var(--dark-teal);
   }
   h1 em { font-style: italic; color: var(--teal); }
 
-  .body-text {
-    font-size: 14px; font-weight: 400; color: var(--grey-mid);
-    line-height: 1.7; margin-bottom: 28px;
-    max-width: 420px;
-  }
-
-  .next-steps {
+  .steps {
     background: var(--soft-purple);
-    padding: 20px 24px;
+    padding: 16px 20px; width: 100%; max-width: 440px;
     text-align: left;
-    margin-bottom: 28px;
-    width: 100%; max-width: 480px;
   }
-  .next-steps-title {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--dark-teal);
-    margin-bottom: 12px;
+  .steps-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--dark-teal); margin-bottom: 10px;
   }
-  .next-steps-list {
-    list-style: none; display: flex; flex-direction: column; gap: 10px;
+  .steps ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .steps li {
+    font-size: 13px; color: var(--grey-mid);
+    display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
   }
-  .next-steps-list li {
-    font-size: 13px; font-weight: 400; color: var(--grey-mid);
-    display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
-  }
-  .next-steps-list li::before {
+  .steps li::before {
     content: ''; width: 6px; height: 6px; border-radius: 50%;
     background: var(--teal); flex-shrink: 0; margin-top: 5px;
   }
 
-  .btn-home {
-    display: inline-flex; align-items: center; justify-content: center;
-    background: var(--dark-teal); color: var(--white);
-    padding: 14px 32px; width: 100%; max-width: 480px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.2s; margin-bottom: 14px;
-  }
-  .btn-home:hover { background: var(--teal-deep); }
-
-  .btn-secondary {
-    display: inline-flex; align-items: center; justify-content: center;
+  .btn-s {
+    display: flex; align-items: center; justify-content: center;
     background: var(--white); color: var(--dark-teal);
-    border: 2px solid var(--dark-teal); padding: 12px 32px;
-    width: 100%; max-width: 480px;
+    border: 2px solid var(--dark-teal); padding: 13px 24px;
+    width: 100%; max-width: 440px;
     font-family: 'Montserrat', sans-serif;
     font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase; text-decoration: none;
-    transition: background 0.2s, color 0.2s; margin-bottom: 16px;
+    transition: background 0.2s, color 0.2s;
+    min-height: 48px;
   }
-  .btn-secondary:hover { background: var(--dark-teal); color: var(--white); }
+  .btn-s:hover { background: var(--dark-teal); color: var(--white); }
 
-  .phone-link {
+  .phone {
     font-size: 13px; color: var(--teal-deep);
     text-decoration: underline; font-weight: 500;
   }
-  .phone-link:hover { color: var(--dark-teal); }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 28px 20px; gap: 14px; }
+    .steps { padding: 14px 16px; }
+    .steps li { font-size: 12px; }
+  }
 </style>
 </head>
 <body>
-
-<div class="container" role="main">
-  <div class="checkmark" aria-hidden="true">
+<div class="wrap" role="main">
+  <div class="check" aria-hidden="true">
     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
   <div class="eyebrow">Request received</div>
   <h1>You're all set.<br><em>We'll be in touch soon.</em></h1>
-  <p class="body-text">
-    Thank you for reaching out to SOM Aesthetics. Our team has received your $99 skin check request and will contact you shortly to confirm your appointment.
-  </p>
-  <div class="next-steps">
-    <div class="next-steps-title">What happens next</div>
-    <ul class="next-steps-list">
-      <li>Our team will contact you within 1 business day to confirm your time</li>
-      <li>Same-week appointments available — we'll find a time that works for you</li>
-      <li>Cash pay only · No insurance · Encinitas, CA</li>
+  <div class="steps">
+    <div class="steps-title">What happens next</div>
+    <ul>
+      <li>Our team will contact you within 1 business day to confirm your appointment time</li>
+      <li>Same-week appointments available in Encinitas, CA</li>
+      <li>Cash pay only · No insurance required</li>
     </ul>
   </div>
-  <a href="https://skincheck.som-aesthetics.com" class="btn-home">Back to the skin check page</a>
   <a href="https://www.som.md?utm_source=skincheck-thankyou&utm_medium=referral&utm_campaign=dermoffer-mar26"
-     class="btn-secondary" target="_blank" rel="noopener noreferrer">
-    Visit Our Main Website
-  </a>
-  <a href="tel:7607667546" class="phone-link">Or call us: 760-766-7546</a>
+     class="btn-s" target="_blank" rel="noopener noreferrer">Visit Our Main Website</a>
+  <a href="tel:7607667546" class="phone">Or call us: 760-766-7546</a>
 </div>
-
 </body>
 </html>
